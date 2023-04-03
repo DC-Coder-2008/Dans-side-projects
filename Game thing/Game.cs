@@ -1,29 +1,39 @@
-﻿namespace Game_thing
+﻿using System.Numerics;
+
+namespace Game_thing
 {
 
     class Code
     {
         static void Main()
         {
-            PlayerInfo player = new PlayerInfo();
-            int screenLength = 30;
-            int screenHeight = 30;
+            int screenSize = 20;
+            string emptyTile = ".";
 
-            string[,] screen = new string[screenLength, screenHeight];
+            string[,] screen = new string[screenSize, screenSize];
 
             for (int i = 0; i < screen.GetLength(0); i++)
             {
                 for (int j = 0; j < screen.GetLength(1); j++)
                 {
-                    screen[i, j] = ".";
+                    screen[i, j] = emptyTile;
                 }
             }
 
+            MainCodeLoop(screen, screenSize,emptyTile);
+            
+        }
+
+        static void MainCodeLoop(string[,] screen, int screenSize, string emptyTile)
+        {
+            PlayerInfo player = new PlayerInfo();
+
             while (true)
             {
+                PrintScreen(screen, player.position, emptyTile);
 
                 var movementInput = Console.ReadKey();
-                Console.Clear();
+
 
                 switch (movementInput.KeyChar.ToString())
                 {
@@ -47,7 +57,7 @@
 
                     case "s":
                         {
-                            if (player.position[1] + 1 < screenHeight)
+                            if (player.position[1] + 1 < screenSize)
                             {
                                 player.position[1]++;
                             }
@@ -55,7 +65,7 @@
                         }
                     case "d":
                         {
-                            if (player.position[0] + 1 < screenLength)
+                            if (player.position[0] + 1 < screenSize)
                             {
                                 player.position[0]++;
                             }
@@ -63,18 +73,39 @@
                         }
                     default:
                         {
-                            
+
                             break;
                         }
                 }//movement logic
 
-                PrintScreen(screen, player.position);
+
             }
         }
 
-        static void PrintScreen(string[,] screen, int[] playerPosition)
+        static void PrintScreen(string[,] screen, int[] playerPosition, string emptyTile)
         {
-            screen[playerPosition[0], playerPosition[1]] = "#";
+            Console.Clear();
+
+            for (int i = 0; i < screen.GetLength(0); i++)
+            {
+                for (int j = 0; j < screen.GetLength(1); j++)
+                {
+                    screen[i, j] = emptyTile;
+                }
+            }
+
+            screen[playerPosition[1], playerPosition[0]] = "#";
+
+            for (int i = 0; i < screen.GetLength(0); i++)
+            {
+                Console.WriteLine("");
+
+                for (int j = 0; j < screen.GetLength(1); j++)
+                {
+                    Console.Write(screen[i, j]);
+                }
+                
+            }
         }
     }
 

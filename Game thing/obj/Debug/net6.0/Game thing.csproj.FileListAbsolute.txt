@@ -13,3 +13,18 @@ D:\Code\Visual studio\Game thing\obj\Debug\net6.0\refint\Game thing.dll
 D:\Code\Visual studio\Game thing\obj\Debug\net6.0\Game thing.pdb
 D:\Code\Visual studio\Game thing\obj\Debug\net6.0\Game thing.genruntimeconfig.cache
 D:\Code\Visual studio\Game thing\obj\Debug\net6.0\ref\Game thing.dll
+D:\Code\Dans-side-projects\Game thing\bin\Debug\net6.0\Game thing.exe
+D:\Code\Dans-side-projects\Game thing\bin\Debug\net6.0\Game thing.deps.json
+D:\Code\Dans-side-projects\Game thing\bin\Debug\net6.0\Game thing.runtimeconfig.json
+D:\Code\Dans-side-projects\Game thing\bin\Debug\net6.0\Game thing.dll
+D:\Code\Dans-side-projects\Game thing\bin\Debug\net6.0\Game thing.pdb
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.csproj.AssemblyReference.cache
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.AssemblyInfoInputs.cache
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.AssemblyInfo.cs
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.csproj.CoreCompileInputs.cache
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.dll
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\refint\Game thing.dll
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.pdb
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\Game thing.genruntimeconfig.cache
+D:\Code\Dans-side-projects\Game thing\obj\Debug\net6.0\ref\Game thing.dll

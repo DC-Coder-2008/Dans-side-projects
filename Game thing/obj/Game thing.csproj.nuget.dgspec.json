@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\Visual studio\\Game thing\\Game thing.csproj": {}
+    "D:\\Code\\Dans-side-projects\\Game thing\\Game thing.csproj": {}
   },
   "projects": {
-    "D:\\Code\\Visual studio\\Game thing\\Game thing.csproj": {
+    "D:\\Code\\Dans-side-projects\\Game thing\\Game thing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Visual studio\\Game thing\\Game thing.csproj",
+        "projectUniqueName": "D:\\Code\\Dans-side-projects\\Game thing\\Game thing.csproj",
         "projectName": "Game thing",
-        "projectPath": "D:\\Code\\Visual studio\\Game thing\\Game thing.csproj",
+        "projectPath": "D:\\Code\\Dans-side-projects\\Game thing\\Game thing.csproj",
         "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Visual studio\\Game thing\\obj\\",
+        "outputPath": "D:\\Code\\Dans-side-projects\\Game thing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
