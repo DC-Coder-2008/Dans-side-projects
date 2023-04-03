@@ -1,4 +1,6 @@
 ﻿using System.Numerics;
+using System.Linq;
+using System;
 
 namespace Game_thing
 {
@@ -7,33 +9,27 @@ namespace Game_thing
     {
         static void Main()
         {
-            int screenSize = 20;
-            string emptyTile = ".";
+            int screenSize = 25;
+            int treasureAmount = (screenSize+((screenSize*screenSize)/4))/4 ;
+            string emptyTile = " ";
 
             string[,] screen = new string[screenSize, screenSize];
 
-            for (int i = 0; i < screen.GetLength(0); i++)
-            {
-                for (int j = 0; j < screen.GetLength(1); j++)
-                {
-                    screen[i, j] = emptyTile;
-                }
-            }
-
-            MainCodeLoop(screen, screenSize,emptyTile);
+            MainCodeLoop(screen, screenSize, emptyTile, treasureAmount);
             
         }
 
-        static void MainCodeLoop(string[,] screen, int screenSize, string emptyTile)
+        static void MainCodeLoop(string[,] screen, int screenSize, string emptyTile, int treasureAmount)
         {
             PlayerInfo player = new PlayerInfo();
+            int[,] treasureLocations = generateTreasureLocation(treasureAmount, screenSize);
 
             while (true)
             {
-                PrintScreen(screen, player.position, emptyTile);
+
+                PrintScreen(screen, player.position, emptyTile, treasureLocations);
 
                 var movementInput = Console.ReadKey();
-
 
                 switch (movementInput.KeyChar.ToString())
                 {
@@ -79,10 +75,11 @@ namespace Game_thing
                 }//movement logic
 
 
+
             }
         }
 
-        static void PrintScreen(string[,] screen, int[] playerPosition, string emptyTile)
+        static void PrintScreen(string[,] screen, int[] playerPosition, string emptyTile, int[,] treasureLocations)
         {
             Console.Clear();
 
@@ -92,6 +89,11 @@ namespace Game_thing
                 {
                     screen[i, j] = emptyTile;
                 }
+            }
+
+            for (int i=0; i < treasureLocations.GetLength(0); i++)
+            {
+                screen[treasureLocations[i, 0], treasureLocations[i, 1]] = "$";
             }
 
             screen[playerPosition[1], playerPosition[0]] = "#";
@@ -106,6 +108,20 @@ namespace Game_thing
                 }
                 
             }
+        }
+
+        static int[,] generateTreasureLocation(int treasureAmount, int screenSize)
+        {
+            int[,] treasureLocations = new int[treasureAmount, 2];
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < treasureAmount; i++)
+            {
+                treasureLocations[i, 0] = rnd.Next(0, screenSize);
+                treasureLocations[i, 1] = rnd.Next(0, screenSize);
+            }
+            return treasureLocations;
         }
     }
 
