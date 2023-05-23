@@ -9,28 +9,28 @@ namespace Game_thing
     {
         static void Main()
         {
-            int screenSize = 25;
-            int treasureAmount = (screenSize+((screenSize*screenSize)/4))/4 ;
+            int screenSize = 10;
+            int treasureAmount = (int)Math.Pow((screenSize / 2.5),2) ;
             string emptyTile = " ";
+            int count = 0;
 
             string[,] screen = new string[screenSize, screenSize];
 
-            MainCodeLoop(screen, screenSize, emptyTile, treasureAmount);
+            MainCodeLoop(screen, screenSize, emptyTile, treasureAmount, count);
             
         }
 
-        static void MainCodeLoop(string[,] screen, int screenSize, string emptyTile, int treasureAmount)
+        static void MainCodeLoop(string[,] screen, int screenSize, string emptyTile, int treasureAmount, int count)
         {
             PlayerInfo player = new PlayerInfo();
             int[,] treasureLocations = generateTreasureLocation(treasureAmount, screenSize);
 
+            RunGameLoop(screen, player.position, emptyTile, treasureLocations, count);
+
             while (true)
             {
 
-                PrintScreen(screen, player.position, emptyTile, treasureLocations);
-
                 var movementInput = Console.ReadKey();
-
                 switch (movementInput.KeyChar.ToString())
                 {
                     case "w":
@@ -74,14 +74,15 @@ namespace Game_thing
                         }
                 }//movement logic
 
-
+                RunGameLoop(screen, player.position, emptyTile, treasureLocations, count);
+                count++;
 
             }
         }
 
-        static void PrintScreen(string[,] screen, int[] playerPosition, string emptyTile, int[,] treasureLocations)
+        static void RunGameLoop(string[,] screen, int[] playerPosition, string emptyTile, int[,] treasureLocations, int count)
         {
-            Console.Clear();
+            
 
             for (int i = 0; i < screen.GetLength(0); i++)
             {
@@ -91,6 +92,8 @@ namespace Game_thing
                 }
             }
 
+            treasureLocations = CheckForTreasureCollection(treasureLocations, playerPosition);
+
             for (int i=0; i < treasureLocations.GetLength(0); i++)
             {
                 screen[treasureLocations[i, 0], treasureLocations[i, 1]] = "$";
@@ -98,16 +101,13 @@ namespace Game_thing
 
             screen[playerPosition[1], playerPosition[0]] = "#";
 
-            for (int i = 0; i < screen.GetLength(0); i++)
-            {
-                Console.WriteLine("");
+            
 
-                for (int j = 0; j < screen.GetLength(1); j++)
-                {
-                    Console.Write(screen[i, j]);
-                }
-                
-            }
+            CheckForWin(treasureLocations, count);
+
+            Console.Clear();
+            PrintScreen(screen);
+
         }
 
         static int[,] generateTreasureLocation(int treasureAmount, int screenSize)
@@ -122,6 +122,61 @@ namespace Game_thing
                 treasureLocations[i, 1] = rnd.Next(0, screenSize);
             }
             return treasureLocations;
+        }
+
+        static void PrintScreen(string[,] screen)
+        {
+            for (int i = 0; i < screen.GetLength(0); i++)
+            {
+                Console.WriteLine("");
+
+                for (int j = 0; j < screen.GetLength(1); j++)
+                {
+                    Console.Write(screen[i, j]);
+                }
+
+            }
+        }
+
+        static int[,] CheckForTreasureCollection(int[,] treasureLocations, int[] playerPosition)
+       {
+            for (int i = 0; i < treasureLocations.GetLength(0); i++)
+            {
+               if (treasureLocations[i,0] == playerPosition[1] && treasureLocations[i,1] == playerPosition[0])
+                {
+                    treasureLocations[i, 0] = 0;
+                    treasureLocations[i, 1] = 0;
+                }
+            }
+
+            return treasureLocations;
+        }
+
+        static void CheckForWin(int[,] treasureLocations, int count)
+        {
+            bool win = true;
+
+            for(int i = 0; i < treasureLocations.GetLength(0); i++)
+            {
+                for(int j = 0; j < treasureLocations.GetLength(1); j++)
+                {
+                    if (treasureLocations[i,j] != 0)
+                    {
+                        win = false;
+                    }
+                }
+            }
+
+           if(win == true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("You collected the treasure in " + (count+1) + " moves.");
+                Thread.Sleep(1000);
+                Environment.Exit(12345);
+            }
+            
+            
         }
     }
 
